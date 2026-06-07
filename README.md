@@ -1,9 +1,9 @@
 # Software-Design-Study
 A personal workspace for studying and practicing software design concepts, including OOP, SOLID principles, and Design Patterns.
 
-## 📚 Módulos de Estudo
+## 📚 Study Modules
 
-### 1. Programação Orientada a Objetos (OOP)
-Estudos dedicados a compreender os pilares fundamentais da orientação a objetos utilizando **TypeScript**.
-* [📖 Documentação de Conceitos](file:///home/naves/Projetos/SoftwareDesignStudy/oop/concepts.md): Guia explicativo sobre Encapsulamento (Getters/Setters), Abstração (Classes Abstratas vs Interfaces), Herança e Polimorfismo.
-* [📝 Exercícios Práticos](file:///home/naves/Projetos/SoftwareDesignStudy/oop/exercises.md): Lista de exercícios com cenários reais para praticar cada pilar.
+### 1. Object-Oriented Programming (OOP)
+Studies dedicated to understanding the fundamental pillars and advanced concepts of OOP using **TypeScript**.
+* [📖 Concept Documentation](file:///home/naves/Projetos/SoftwareDesignStudy/oop/concepts.md): Explanatory guide on Encapsulation, Abstraction, Inheritance, Polymorphism, Static Members, Object Relations, and Method Overloading.
+* [📝 Practical Exercises](file:///home/naves/Projetos/SoftwareDesignStudy/oop/exercises.md): A set of 6 hands-on exercises to practice all of these concepts.
