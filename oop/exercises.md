@@ -4,6 +4,18 @@ Estes exercícios foram projetados para consolidar os conceitos de OOP usando Ty
 
 Recomendamos que você crie um arquivo `.ts` para cada exercício (ex: `exercicio1.ts`) na pasta `oop/` e utilize o compilador do TypeScript ou `ts-node` para executá-los.
 
+> [!IMPORTANT]
+> **Regra de Testes:** Todos os métodos que contenham regras de negócio, validações ou cálculos complexos (métodos justificáveis) **devem obrigatoriamente possuir testes unitários** para validar seus diferentes fluxos de sucesso e falha (exceções).
+
+
+## 📊 Progresso dos Exercícios
+- [x] **Exercício 1:** Sistema de Produto e Estoque (Foco: Encapsulamento)
+- [ ] **Exercício 2:** Processador de Pagamentos (Foco: Abstração e Polimorfismo)
+- [ ] **Exercício 3:** Arena de RPG (Foco: Herança e Polimorfismo por Sobrescrita)
+- [ ] **Exercício 4:** Validador de Senhas (Foco: Membros Estáticos)
+- [ ] **Exercício 5:** Montagem de Computador (Foco: Composição vs Herança e Relações)
+- [ ] **Exercício 6:** Envio de Mensagens Flexível (Foco: Sobrecarga de Métodos)
+
 ---
 
 ## 🎯 Exercício 1: Sistema de Produto e Estoque (Foco: Encapsulamento)
