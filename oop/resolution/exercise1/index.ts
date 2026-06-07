@@ -3,16 +3,22 @@
 
 export class Product {
 
-    private _name: string;
-    private _price: number;
+    private _name!: string;
+    private _price!: number;
     private _stockQuantity: number;
-    private _maximumDiscount: number;
+    private _maximumDiscount!: number;
 
     constructor(name:string, price:number, stockQuantity:number, maximumDiscount:number){
-        this._name = name;
-        this._price = price;
-        this._stockQuantity = stockQuantity;
-        this._maximumDiscount = maximumDiscount;
+        this.name = name;
+        this.price = price;
+        this.maximumDiscount = maximumDiscount;
+        
+        this._stockQuantity = 0;
+        if(stockQuantity > 0){
+            this.addStock(stockQuantity)
+        } else{
+            throw new RangeError("The stock quantity must be greater than '0'.");
+        }
     }
 
     set name(newName:string){

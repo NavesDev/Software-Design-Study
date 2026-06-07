@@ -1,5 +1,5 @@
 import { describe, test, expect, beforeEach } from 'vitest';
-import { Product } from './exercise1';
+import { Product } from '.';
 
 describe("Product Class", ()=>{
     let product:Product;
@@ -67,5 +67,18 @@ describe("Product Class", ()=>{
         
         //Assert
         expect(act).toThrow()
+    })
+
+    test("should calculate price with discount when discount is a valid value",()=>{
+        //Arrange
+        const discount = 0.15
+        const expectedValue = product.price - (product.price * discount)
+
+
+        //Act
+        const finalPrice = product.calculatePriceWithDiscount(discount)
+
+        //Assert
+        expect(finalPrice).toBe(expectedValue)
     })
 })
