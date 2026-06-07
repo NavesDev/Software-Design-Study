@@ -37,7 +37,7 @@ describe("Product Class", ()=>{
         expect(product.stockQuantity).toBe(2)
     })
 
-    test("should thrown an error when quantity is greater than stock quantity", ()=>{
+    test("should throw an error when quantity is greater than stock quantity", ()=>{
         //Arrange
         const product = new Product("Personal Computer",1500.90,15,0.2)
 
@@ -50,7 +50,7 @@ describe("Product Class", ()=>{
         expect(act).toThrow()
     })
 
-    test("should thrown an error when quantity is smaller than '0'",()=>{
+    test("should throw an error when quantity is smaller than '0'",()=>{
         //Arrange
         const product = new Product("Personal Computer",1500.90,15,0.2)
 
