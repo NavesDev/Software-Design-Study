@@ -1,6 +1,6 @@
 // ABSTRACTION AND POLYMORPHISM
 
-import { ValueSmallerOrEqualsZeroError } from "./error";
+import { NoProofAvaliableError, ValueSmallerOrEqualsZeroError } from "./error";
 import { PROOFS } from "./constants";
 import {randomUUID} from "crypto";
 
@@ -37,6 +37,9 @@ export class PixPayment extends Payment implements PaymentMethod{
     }
 
     public obtainProof(): string {
+        if(this._pixKey == ""){
+            throw new NoProofAvaliableError();
+        }
         return PROOFS.PIX(this.pixKey,this.finalValue);
     }
 }

@@ -1,7 +1,7 @@
 import {describe, test, expect, beforeEach} from "vitest"
 import { PixPayment } from ".";
 import { PROOFS } from "./constants"; 
-import { ValueSmallerOrEqualsZeroError } from "./error";
+import { ValueSmallerOrEqualsZeroError, NoProofAvaliableError } from "./error";
 
 describe("Pix Payment Test",()=> {
     let pixPayment:PixPayment;
@@ -46,5 +46,18 @@ describe("Pix Payment Test",()=> {
 
         //Assert
         expect(proof).toBe(PROOFS.PIX(pixPayment.pixKey, pixPayment.finalValue));
-    })
+    });
+
+    test("should throw an exception when not processed",()=>{
+        //Arrange
+        const value = 100;
+
+        //Act
+        const act =()=>{
+            const proof = pixPayment.obtainProof();
+        }
+        
+        //Assert
+        expect(act).toThrow(NoProofAvaliableError);
+    });
 })
