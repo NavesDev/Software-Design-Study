@@ -1,7 +1,7 @@
 // ENCAPSULATION EXERCISE
 // Getters, setters and private properties
 
-class Product {
+export class Product {
 
     private _name: string;
     private _price: number;
