@@ -1,13 +1,19 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect, beforeEach } from 'vitest';
 import { Product } from './exercise1';
 
 describe("Product Class", ()=>{
+    let product:Product;
+
+    beforeEach(()=>{
+        product = new Product("Personal Computer",1500.90,15,0.2)
+    })
+
     test("should change name when a valid name provided",()=>{
         //Arrange
-        const product = new Product("Personal Computer",1500.90,15,0.2)
-        
+        const newName = "PC"
+
         //Act
-        product.name = "PC"
+        product.name = newName
 
         //Assert
         expect(product.name).toBe("PC")
@@ -15,11 +21,11 @@ describe("Product Class", ()=>{
 
     test("should thrown an error when name is empty",()=>{
         //Arrange
-        const product = new Product("Personal Computer",1500.90,15,0.2)
+        const newName = ""
 
         //Act
         const act = ()=>{
-            product.name = "";
+            product.name = newName;
         }
         
         //Assert
@@ -28,10 +34,10 @@ describe("Product Class", ()=>{
 
     test("should remove stock when quantity is a valid value",()=>{
         //Arrange
-        const product = new Product("Personal Computer",1500.90,15,0.2)
+        const quantity = 13;
 
         //Act
-        product.removeStock(13)
+        product.removeStock(quantity)
         
         //Assert
         expect(product.stockQuantity).toBe(2)
@@ -39,7 +45,7 @@ describe("Product Class", ()=>{
 
     test("should throw an error when quantity is greater than stock quantity", ()=>{
         //Arrange
-        const product = new Product("Personal Computer",1500.90,15,0.2)
+        const quantity = 16;
 
         //Act
         const act = ()=>{
@@ -52,11 +58,11 @@ describe("Product Class", ()=>{
 
     test("should throw an error when quantity is smaller than '0'",()=>{
         //Arrange
-        const product = new Product("Personal Computer",1500.90,15,0.2)
+        const quantity = -1;
 
         //Act
         const act = ()=>{
-            product.removeStock(-1)
+            product.removeStock(quantity)
         }
         
         //Assert
