@@ -12,3 +12,4 @@ Studies dedicated to understanding the fundamental pillars and advanced concepts
 * The practical exercises must be implemented **without the use of AI to write or generate the code**. 
 * AI should only be used for lookup, concept queries, and generating new exercises to solidify learning.
 * Methods containing business logic, validations, or calculations (justifiable methods) **must have unit tests** verifying their behavior.
+* The unit test coverage must have a minimum threshold of 60%.
