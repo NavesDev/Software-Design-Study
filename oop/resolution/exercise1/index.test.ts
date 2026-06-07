@@ -4,9 +4,9 @@ import {
     DiscountSmallerOrEqualsMaximumDiscount,
     StringEmptyError,
     QuantityGreaterOrEqualsStock,
-    ValueMustBeGraterOrEqualsMinNumberError,
     ValueMustBeGreaterThanMinNumberError
 } from './error';
+
 import { LIMITS } from './constants';
 
 describe("Product Class", ()=>{
