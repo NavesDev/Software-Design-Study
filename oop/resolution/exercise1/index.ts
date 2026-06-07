@@ -1,5 +1,18 @@
 // ENCAPSULATION EXERCISE
 // Getters, setters and private properties
+import { 
+    ValueMustBeGraterOrEqualsMinNumberError, 
+    ValueMustBeGreaterThanMinNumberError, 
+    StringEmptyError, 
+    QuantityGreaterOrEqualsStock,
+    DiscountSmallerOrEqualsMaximumDiscount,
+    MaximumDiscountGreaterThanExpectedError
+} from "./error";
+
+import { 
+    LIMITS, 
+    PROPERTIES 
+} from "./constants";
 
 export class Product {
 
@@ -14,10 +27,10 @@ export class Product {
         this.maximumDiscount = maximumDiscount;
         
         this._stockQuantity = 0;
-        if(stockQuantity > 0){
+        if(stockQuantity > LIMITS.MIN_NUMBER){
             this.addStock(stockQuantity)
         } else{
-            throw new RangeError("The stock quantity must be greater than '0'.");
+            throw new ValueMustBeGreaterThanMinNumberError(PROPERTIES.STOCK_QUANTITY);
         }
     }
 
@@ -25,7 +38,7 @@ export class Product {
         if (newName != ""){
             this._name = newName;
         } else {
-            throw new Error("The product name cannot be empty.");
+            throw new StringEmptyError(PROPERTIES.NAME);
         }
     }
 
@@ -34,10 +47,10 @@ export class Product {
     }
 
     set price(newPrice:number){
-        if (newPrice > 0){
+        if (newPrice > LIMITS.MIN_NUMBER){
             this._price = newPrice;
         } else {
-            throw new RangeError("The price must be greater than '0'.");
+            throw new ValueMustBeGreaterThanMinNumberError(PROPERTIES.PRICE);
         }
     }
 
@@ -50,10 +63,12 @@ export class Product {
     }
 
     set maximumDiscount(newMaximumDiscount:number){
-        if(newMaximumDiscount <= 0.5 && newMaximumDiscount >=0){
+        if(newMaximumDiscount <= LIMITS.MAX_DISCOUNT && newMaximumDiscount >= LIMITS.MIN_NUMBER){
             this._maximumDiscount = newMaximumDiscount;
+        } else if (newMaximumDiscount<0){
+            throw new ValueMustBeGraterOrEqualsMinNumberError(PROPERTIES.MAXIMUM_DISCOUNT);
         } else {
-            throw new RangeError("The maximum discount must be greater or equals '0' and not should be greater than '0.5'");
+            throw new MaximumDiscountGreaterThanExpectedError()
         }
     }     
 
@@ -62,30 +77,30 @@ export class Product {
     }
 
     public addStock(quantity:number):void {
-        if(quantity > 0){
+        if(quantity > LIMITS.MIN_NUMBER){
             this._stockQuantity += quantity;
         } else {
-            throw new RangeError("The quantity must be greater than '0'")
+            throw new ValueMustBeGreaterThanMinNumberError(PROPERTIES.QUANTITY);
         }
     }
 
     public removeStock(quantity:number):void{
-        if(quantity >= 0 && this._stockQuantity >= quantity){
+        if(quantity >= LIMITS.MIN_NUMBER && this._stockQuantity >= quantity){
             this._stockQuantity -= quantity;
         } else if(quantity < 0){
-            throw new RangeError("The quantity must bbe greater than '0'")
+            throw new ValueMustBeGreaterThanMinNumberError(PROPERTIES.QUANTITY);
         } else {
-            throw new Error("The quantity is greater than the stock")
+            throw new QuantityGreaterOrEqualsStock()
         }
     }
 
     public calculatePriceWithDiscount(discount:number):number{
-        if (discount >= 0 && discount <= this._maximumDiscount){
+        if (discount >= LIMITS.MIN_NUMBER && discount <= this._maximumDiscount){
             return this._price - (this._price * discount);
         } else if (discount > this._maximumDiscount){
-            throw new Error(`The discount should be smaller than the maximum discount (${this._maximumDiscount})`)
+            throw new DiscountSmallerOrEqualsMaximumDiscount();
         } else {
-            throw new RangeError("The discount should be greater than '0'")
+            throw new ValueMustBeGraterOrEqualsMinNumberError(PROPERTIES.DISCOUNT);
         }
     }
 

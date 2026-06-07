@@ -1,22 +1,30 @@
 import { describe, test, expect, beforeEach } from 'vitest';
 import { Product } from '.';
+import { 
+    DiscountSmallerOrEqualsMaximumDiscount,
+    StringEmptyError,
+    QuantityGreaterOrEqualsStock,
+    ValueMustBeGraterOrEqualsMinNumberError,
+    ValueMustBeGreaterThanMinNumberError
+} from './error';
+import { LIMITS } from './constants';
 
 describe("Product Class", ()=>{
     let product:Product;
 
     beforeEach(()=>{
-        product = new Product("Personal Computer",1500.90,15,0.2)
+        product = new Product("Personal Computer",1500.90,15,0.2);
     })
 
     test("should change name when a valid name provided",()=>{
         //Arrange
-        const newName = "PC"
+        const newName = "PC";
 
         //Act
-        product.name = newName
+        product.name = newName;
 
         //Assert
-        expect(product.name).toBe(newName)
+        expect(product.name).toBe(newName);
     })
 
     test("should throw an error when name is empty",()=>{
@@ -29,7 +37,7 @@ describe("Product Class", ()=>{
         }
         
         //Assert
-        expect(act).toThrow()
+        expect(act).toThrow(StringEmptyError)
     })
 
     test("should remove stock when quantity is a valid value",()=>{
@@ -40,7 +48,7 @@ describe("Product Class", ()=>{
         product.removeStock(quantity)
         
         //Assert
-        expect(product.stockQuantity).toBe(2)
+        expect(product.stockQuantity).toBe(2);
     })
 
     test("should throw an error when quantity is greater than stock quantity", ()=>{
@@ -49,36 +57,48 @@ describe("Product Class", ()=>{
 
         //Act
         const act = ()=>{
-            product.removeStock(16)
+            product.removeStock(16);
         }
         
         //Assert
-        expect(act).toThrow()
+        expect(act).toThrow(QuantityGreaterOrEqualsStock);
     })
 
-    test("should throw an error when quantity is smaller than '0'",()=>{
+    test("should throw an error when quantity is smaller than min number",()=>{
         //Arrange
-        const quantity = -1;
+        const quantity = LIMITS.MIN_NUMBER - 1;
 
         //Act
         const act = ()=>{
-            product.removeStock(quantity)
+            product.removeStock(quantity);
         }
         
         //Assert
-        expect(act).toThrow()
+        expect(act).toThrow(ValueMustBeGreaterThanMinNumberError);
     })
 
     test("should calculate price with discount when discount is a valid value",()=>{
         //Arrange
         const discount = 0.15
-        const expectedValue = product.price - (product.price * discount)
-
+        const expectedValue = product.price - (product.price * discount);
 
         //Act
-        const finalPrice = product.calculatePriceWithDiscount(discount)
+        const finalPrice = product.calculatePriceWithDiscount(discount);
 
         //Assert
-        expect(finalPrice).toBe(expectedValue)
+        expect(finalPrice).toBe(expectedValue);
+    })
+
+    test("should throw an error when discount is greater than maximum discount",()=>{
+        //Arrange
+        const discount = 0.25;
+
+        //Act
+        const act = ()=>{
+            product.calculatePriceWithDiscount(discount);
+        }
+
+        //Assert
+        expect(act).toThrow(DiscountSmallerOrEqualsMaximumDiscount)
     })
 })
