@@ -16,10 +16,10 @@ describe("Product Class", ()=>{
         product.name = newName
 
         //Assert
-        expect(product.name).toBe("PC")
+        expect(product.name).toBe(newName)
     })
 
-    test("should thrown an error when name is empty",()=>{
+    test("should throw an error when name is empty",()=>{
         //Arrange
         const newName = ""
 
