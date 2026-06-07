@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A personal workspace for studying and practicing software design concepts, including OOP, SOLID principles, and Design Patterns.",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest run --coverage"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/NavesDev/Software-Design-Study#readme",
   "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.8",
     "tsx": "^4.22.4",
     "vitest": "^4.1.8"
   }
