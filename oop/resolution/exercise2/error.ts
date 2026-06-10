@@ -1,6 +1,12 @@
-export class ValueSmallerOrEqualsZeroError extends Error{
+export class ValueSmallerOrEqualsZeroError extends RangeError{
     constructor(property:string = "value"){
         super(`The ${property} is smaller or equals zero.`);
+    }
+}
+
+export class ValueSmallerThanZeroError extends RangeError{
+    constructor(property:string = "value"){
+        super(`The ${property} is smaller than zero.`);
     }
 }
 
