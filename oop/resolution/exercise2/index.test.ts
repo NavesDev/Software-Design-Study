@@ -82,7 +82,7 @@ describe("Card Payment Constructor Test",()=>{
         const feeRate = 0.2; 
 
         //Act
-        const cardPayment = CardPayment(feeRate);
+        const cardPayment = new CardPayment(feeRate);
 
         //Assert
         expect(cardPayment.feeRate).toBe(feeRate);
@@ -93,7 +93,7 @@ describe("Card Payment Constructor Test",()=>{
         const feeRate = -0.2; 
 
         //Act
-        const act = ()=>{CardPayment(feeRate)};
+        const act = ()=>{new CardPayment(feeRate)};
 
         //Assert
         expect(act).toThrow(ValueSmallerThanZeroError);
