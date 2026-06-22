@@ -7,10 +7,10 @@ Recomendamos que você crie um arquivo `.ts` para cada exercício (ex: `exercici
 > [!IMPORTANT]
 > **Regra de Testes:** Todos os métodos que contenham regras de negócio, validações ou cálculos complexos (métodos justificáveis) **devem obrigatoriamente possuir testes unitários** para validar seus diferentes fluxos de sucesso e falha (exceções).
 
-
 ## 📊 Progresso dos Exercícios
+
 - [x] **Exercício 1:** Sistema de Produto e Estoque (Foco: Encapsulamento)
-- [ ] **Exercício 2:** Processador de Pagamentos (Foco: Abstração e Polimorfismo)
+- [x] **Exercício 2:** Processador de Pagamentos (Foco: Abstração e Polimorfismo)
 - [ ] **Exercício 3:** Arena de RPG (Foco: Herança e Polimorfismo por Sobrescrita)
 - [ ] **Exercício 4:** Validador de Senhas (Foco: Membros Estáticos)
 - [ ] **Exercício 5:** Montagem de Computador (Foco: Composição vs Herança e Relações)
@@ -21,9 +21,11 @@ Recomendamos que você crie um arquivo `.ts` para cada exercício (ex: `exercici
 ## 🎯 Exercício 1: Sistema de Produto e Estoque (Foco: Encapsulamento)
 
 ### Cenário
+
 Você precisa construir um módulo para gerenciar produtos em um e-commerce. A integridade dos dados do produto é crítica: o preço nunca pode ser negativo, a quantidade em estoque não pode ficar abaixo de zero, e o desconto aplicado não pode exceder um limite máximo.
 
 ### Requisitos:
+
 1. Crie uma classe `Produto`.
 2. Adicione as seguintes propriedades privadas:
    - `_nome: string`
@@ -46,9 +48,11 @@ Você precisa construir um módulo para gerenciar produtos em um e-commerce. A i
 ## 🎯 Exercício 2: Processador de Pagamentos (Foco: Abstração e Polimorfismo)
 
 ### Cenário
+
 Sua plataforma de e-commerce agora aceita múltiplas formas de pagamento: **PIX**, **Cartão de Crédito** e **Boleto**. Cada forma de pagamento possui taxas diferentes e regras de processamento distintas.
 
 ### Requisitos:
+
 1. Crie uma interface chamada `MetodoPagamento` com as seguintes assinaturas:
    - `processar(valor: number): void`
    - `obterComprovante(): string`
@@ -63,16 +67,18 @@ Sua plataforma de e-commerce agora aceita múltiplas formas de pagamento: **PIX*
    - Boleto tem uma taxa fixa de R$ 2,00 para emissão.
    - O comprovante deve incluir um código de barras fictício e avisar que o pagamento pode levar até 3 dias úteis para compensar.
 5. Crie uma função externa ou uma classe gerenciadora chamada `ProcessadorPagamento`:
-   - Deve conter uma função `executarPagamento(metodo: MetodoPagamento, valor: number): void` que processe o pagamento e imprima o comprovante na tela. *Aqui você aplicará o Polimorfismo!*
+   - Deve conter uma função `executarPagamento(metodo: MetodoPagamento, valor: number): void` que processe o pagamento e imprima o comprovante na tela. _Aqui você aplicará o Polimorfismo!_
 
 ---
 
 ## 🎯 Exercício 3: Arena de RPG (Foco: Herança e Polimorfismo por Sobrescrita)
 
 ### Cenário
+
 Você está desenvolvendo um jogo básico de RPG. Cada herói tem atributos base comuns (nome, pontos de vida, força), mas cada classe de herói (Guerreiro, Mago, Arqueiro) se comporta de forma diferente no combate.
 
 ### Requisitos:
+
 1. Crie uma classe abstrata `Personagem`:
    - Propriedades protegidas (`protected`): `nome: string`, `vida: number`, `forca: number`.
    - Construtor que inicializa essas propriedades.
@@ -98,9 +104,11 @@ Você está desenvolvendo um jogo básico de RPG. Cada herói tem atributos base
 ## 🎯 Exercício 4: Validador de Senhas (Foco: Membros Estáticos)
 
 ### Cenário
+
 Você precisa de uma classe utilitária de segurança que valide senhas do sistema. Como a classe não guarda estado nem precisa ser instanciada via `new`, todos os seus métodos devem ser estáticos.
 
 ### Requisitos:
+
 1. Crie a classe `ValidadorSenha`.
 2. Adicione os seguintes atributos estáticos:
    - `COMPRIMENTO_MINIMO: number = 8`
@@ -114,9 +122,11 @@ Você precisa de uma classe utilitária de segurança que valide senhas do siste
 ## 🎯 Exercício 5: Montagem de Computador (Foco: Composição vs Herança e Relações)
 
 ### Cenário
+
 Você precisa modelar a estrutura de um computador para uma loja de informática física, entendendo a relação entre suas peças.
 
 ### Requisitos:
+
 1. Crie a classe `Processador` que recebe o modelo (ex: "Intel i7") e a velocidade de clock (ex: 3.5) no construtor.
 2. Crie a classe `DispositivoUSB` que recebe o nome do dispositivo (ex: "Mouse Sem Fio").
 3. Crie a classe `Computador` que:
@@ -131,9 +141,11 @@ Você precisa modelar a estrutura de um computador para uma loja de informática
 ## 🎯 Exercício 6: Envio de Mensagens Flexível (Foco: Sobrecarga de Métodos)
 
 ### Cenário
+
 Você precisa construir um centralizador de notificações que pode enviar mensagens por diferentes canais dependendo das informações que forem passadas.
 
 ### Requisitos:
+
 1. Crie a classe `CentralNotificacoes`.
 2. Implemente a **sobrecarga** para o método `enviar`:
    - Assinatura 1: `enviar(mensagem: string): void` -> Envia para o log padrão do console.
