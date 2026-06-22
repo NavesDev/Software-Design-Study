@@ -116,3 +116,8 @@ export class BoletoPayment extends Payment implements PaymentMethod{
     }
 
 }
+
+function executePayment(paymentMethod:PaymentMethod, value:number){
+    paymentMethod.process(value);
+    console.log(paymentMethod.obtainProof());
+}
