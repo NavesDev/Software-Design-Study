@@ -1,6 +1,6 @@
 import {describe, test, expect, beforeEach} from "vitest"
-import { PixPayment, CardPayment } from ".";
-import { PROOFS } from "./constants"; 
+import { PixPayment, CardPayment, BoletoPayment } from ".";
+import { PROOFS, BOLETO_FEE } from "./constants"; 
 import { ValueSmallerOrEqualsZeroError, ValueSmallerThanZeroError, NoProofAvaliableError } from "./error";
 
 
@@ -172,3 +172,75 @@ describe("Card Payment Test",()=> {
     });
 
 });
+
+describe("Boleto Payment Test",()=> {
+    let boletoPayment:BoletoPayment;
+
+    beforeEach(()=>{
+        boletoPayment = new BoletoPayment();
+    })
+
+    test("should process payment when value >  0",()=>{
+        //Arrange
+        const value = 100;
+        const barCodeRegex = /^00090\.\d{5} \d{5}\.\d{5} \d{5}\.\d{5} 1 12340000000000$/;
+
+        //Act
+        boletoPayment.process(value);
+
+        //Assert
+        expect(boletoPayment.finalValue).toBe(value + BOLETO_FEE);
+        expect(boletoPayment.barCode).toMatch(barCodeRegex);
+    });
+
+    test("should throw an error when value <= zero",()=>{
+        //Arrange
+        const value = -100;
+
+        //Act
+        const act = ()=>{
+            boletoPayment.process(value);
+        }
+
+        //Assert
+        expect(act).toThrow(ValueSmallerOrEqualsZeroError);
+    })
+
+    test("should throw an error when value == zero",()=>{
+        //Arrange
+        const value = 0;
+
+        //Act
+        const act = ()=>{
+            boletoPayment.process(value);
+        }
+
+        //Assert
+        expect(act).toThrow(ValueSmallerOrEqualsZeroError);
+    })
+
+    test("should show a receipt when it has",()=>{
+        //Arrange
+        const value = 100;
+
+        //Act
+        boletoPayment.process(value);
+        const proof = boletoPayment.obtainProof();
+
+        //Assert
+        expect(proof).toBe(PROOFS.BOLETO(boletoPayment.barCode, boletoPayment.finalValue));
+    });
+
+    test("should throw an exception when not processed",()=>{
+        //Arrange
+        const value = 100;
+
+        //Act
+        const act =()=>{
+            const proof = boletoPayment.obtainProof();
+        }
+        
+        //Assert
+        expect(act).toThrow(NoProofAvaliableError);
+    });
+})
