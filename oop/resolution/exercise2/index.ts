@@ -113,6 +113,6 @@ export class BoletoPayment extends Payment implements PaymentMethod{
     private generateBarCode(): string {
         const randomBlock = ():number => Math.floor(Math.random() * 90000 + 10000);
         return `00090.${randomBlock()} ${randomBlock()}.${randomBlock()} ${randomBlock()}.${randomBlock()} 1 12340000000000`;
-}
+    }
 
 }
